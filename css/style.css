@@ -46,7 +46,7 @@ body {
 #card-flex-container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
     list-style: none;
     padding: 0;
 }
