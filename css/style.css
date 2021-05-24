@@ -39,6 +39,7 @@ body {
 }
 
 .nav-bar {
+    z-index: 1;
     position: sticky; top: 0;
 }
 
@@ -54,7 +55,7 @@ body {
     background: #0abab5;
 }
 
-.card-flex-container {
+#card-flex-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -72,6 +73,7 @@ body {
 }
 
 .card {
+    position: relative;
     width: 18rem;
     height: 18rem;
     box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0,0,0,0.19);
@@ -83,6 +85,10 @@ img {
     height: 15rem;
     object-fit: cover;
     border-radius: 0.5rem 0.5rem 0 0;
+}
+
+div.card:hover {
+    opacity: 50%;
 }
 
 .ref h4 {
@@ -146,7 +152,7 @@ img {
     margin-bottom: 5%;
 }
 
-.form-button button {
+button {
     margin: 0.5rem;
     background-color: #0bd2cd; /* Green */
     border: none;
@@ -160,13 +166,36 @@ img {
     border-radius: 0.5rem;
 }
 
-.form-button button:hover {
+button:hover {
     background-color: #0abab5;
 }
 
-.form-button button:active {
+button:active {
     background-color: #09a29d;
 }
+
+.delete-one-art {
+    display: none;
+    position:absolute;
+    top:0.5rem;
+    right:0.5rem;
+    border-radius: 0.5rem;
+    border: 0;
+    opacity: 70%;
+}
+
+div.card:hover input {
+    display: block;
+}
+
+.delete-one-art:hover {
+    opacity: 85%;
+}
+
+.delete-one-art:active {
+    opacity: 100%;
+}
+
 
 
 /* Clear floats after the columns */
@@ -175,6 +204,20 @@ img {
     display: table;
     clear: both;
 }
+
+.delete-all {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-inline: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#form-deleteAllButton {
+    background-color: #cf6f37;
+}
+
 
 
 

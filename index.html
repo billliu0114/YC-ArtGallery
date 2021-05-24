@@ -8,7 +8,7 @@
     <title>Bill's Art Gallery</title>
 </head>
 
-<body>
+<body onload="load()">
     <link rel="stylesheet" href="css/style.css">
     <div class="nav">
         <h1>Bill's Art Gallery</h1>
@@ -19,83 +19,17 @@
             <li><a href="about.html">About</a></li>
         </ul>
     </div>
-
-    <!-- <article>
-        <h1 id="hoses">Hoses</h1>
-        <p>Bacon ipsum dolor amet frankfurter pork loin picanha short ribs. T-bone burgdoggen fatback chuck cow, jerky drumstick pork tongue pastrami strip steak pig ball tip. Swine ribeye beef ribs ham, pig venison jowl ball tip pork chop fatback flank biltong tenderloin brisket. Pig sausage landjaeger shankle, cow pork belly biltong shank shoulder tri-tip andouille jowl tongue. Pork chop strip steak jerky boudin ball tip pork belly tenderloin doner. T-bone shank jerky pancetta tenderloin, prosciutto porchetta landjaeger meatloaf drumstick biltong chuck. Beef ham pork chop flank, kielbasa shank corned beef salami alcatra cupim tongue pastrami meatball andouille frankfurter.</p>
-      
-      <h1 id="rakes">Rakes</h1>
-      <p>Strip steak swine pork chop, meatball meatloaf shank pancetta tri-tip ground round ball tip. Turducken prosciutto beef ribs, picanha biltong kevin spare ribs pig. Meatball cupim strip steak ribeye salami. Rump filet mignon doner flank bacon tongue ribeye jowl turkey hamburger prosciutto pig landjaeger pork loin. Biltong kevin beef, shoulder t-bone short loin ball tip hamburger bacon flank. Sirloin venison prosciutto, chicken meatball swine andouille shank pig alcatra meatloaf chuck brisket.</p>
-      
-      <h1 id="shovels">Shovels</h1>
-      <p>Pork filet mignon ball tip drumstick shankle doner salami pastrami. Ham cow beef ribs burgdoggen drumstick cupim. Swine ground round kevin, bresaola pig strip steak porchetta turkey picanha andouille doner. Jerky frankfurter short loin boudin filet mignon strip steak. Shoulder hamburger sirloin beef pastrami pork chop shankle ham hock spare ribs ground round jowl. Pork belly burgdoggen frankfurter t-bone, cupim short loin ham. Beef ribs fatback t-bone prosciutto, cupim capicola spare ribs chicken.</p>
-      </article> -->
     <div class="card-container">
-        <ul class="card-flex-container">
-            <li class="card-flex-item">
+        <ul id="card-flex-container">
+            <!-- <li class="card-flex-item">
                 <div class="card">
                     <img src="./images/IMG_1241.JPG" alt="ImageCard" style="width:100%">
                     <div class="ref">
                         <h4>Yuchen Liu</h4>
                     </div>
+                    <input class="delete-one-art" type="button" value="x" onclick="deleteOneCard(this)"/>
                 </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="./images/IMG_0606.JPG" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>Chole Zhang</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="https://cdn.travelpulse.com/images/04aaedf4-a957-df11-b491-006073e71405/d7dd8d85-eed6-4740-8962-1583ff8dc93f/630x355.jpg" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>sorincolac / iStock / Getty Images Plus</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="https://d3vjn2zm46gms2.cloudfront.net/blogs/2012/12/27011605/gtc_2008-05-26spri0002.jpg" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>JAMES CUNO</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="./images/IMG_1241.JPG" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>Yuchen Liu</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="./images/IMG_1241.JPG" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>Yuchen Liu</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="./images/IMG_1241.JPG" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>Yuchen Liu</h4>
-                    </div>
-                </div>
-            </li>
-            <li class="card-flex-item">
-                <div class="card">
-                    <img src="./images/IMG_1241.JPG" alt="ImageCard" style="width:100%">
-                    <div class="ref">
-                        <h4>Yuchen Liu</h4>
-                    </div>
-                </div>
-            </li>
+            </li> -->
         </ul>
     </div>
     <div class="form-container">
@@ -121,8 +55,11 @@
             </form>
         </div>
         <div class="form-button">
-            <button id="form-addButton">Add Image</button>
-            <button id="form-clearButton">Clear Input</button>
+            <button id="form-addButton" onclick="addCard()">Add Image</button>
+            <button id="form-clearButton" onclick="clearForm()">Clear Input</button>
+        </div>
+        <div class="delete-all">
+            <button id="form-deleteAllButton" onclick="deleteAllCards()">Delete All Arts</button>
         </div>
     </div>
     <script src="js/main.js"></script>
