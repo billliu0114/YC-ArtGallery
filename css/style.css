@@ -245,7 +245,7 @@ div.card:hover input {
     }
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 950px) {
     .form-input .col-left, .form-input .col-right {
         width: 100%;
         margin-top: 0;
