@@ -8,3 +8,4 @@
 - [image url check](https://stackoverflow.com/questions/14651348/checking-if-image-does-exists-using-javascript)
 - [css position](https://css-tricks.com/almanac/properties/p/position/)
 - [css flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#background)
+- [css form](https://www.w3schools.com/howto/howto_css_responsive_form.asp)
