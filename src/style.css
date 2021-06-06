@@ -146,13 +146,10 @@ div.card:hover {
   margin-top: 0.5rem;
 }
 
-
-.form-button {
+.row-button {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin-inline: 30%;
-  margin-bottom: 2%;
 }
 
 button {
@@ -206,13 +203,6 @@ div.card:hover input {
   content: "";
   display: table;
   clear: both;
-}
-
-.delete-all {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  margin-inline: 30%;
 }
 
 #form-deleteAllButton {

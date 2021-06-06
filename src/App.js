@@ -17,20 +17,29 @@ const initDataStr = '{"data": [{"name": "Yuchen Liu", "url": "./images/IMG_1241.
 function App() {
   const initDataObj = JSON.parse(initDataStr);
   const [arts, setArts] = useState(initDataObj.data);
-  const addArtHandler = () => {
+
+  const addArtHandler = (artItem) => {
     setArts((prevArts) => {
-      return [...prevArts];
+      return [...prevArts, artItem];
     });
   };
-  const deleteArtHandler = () => {
+
+  const deleteAllArtsHandler = () => {
     setArts([]);
   };
+
+  const deleteOneArtHandler = (selectedUrl) => {
+    setArts((prevArts) => {
+      return prevArts.filter((artItem)=>artItem.url!==selectedUrl);
+    });
+  };
+
   return (
     <div>
       <Header />
       <NavBar />
-      <Gallery items={arts} />
-      <GalleryForm onAddArt={addArtHandler} onDeleteAll={deleteArtHandler}/>
+      <Gallery items={arts} onDeleteOneArt={deleteOneArtHandler}/>
+      <GalleryForm onAddArt={addArtHandler} onDeleteAllArts={deleteAllArtsHandler}/>
     </div>
   );
 }
