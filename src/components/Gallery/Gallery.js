@@ -5,6 +5,10 @@ function Gallery(props) {
         props.onDeleteOneArt(selectedUrl);
     };
 
+    const modalHandler = (selectedUrl) => {
+        props.onModalClick(selectedUrl);
+    }
+
     if( props.items.length===0) {
         return (<div className="card-container">
             <ul id="card-flex-container">
@@ -21,6 +25,7 @@ function Gallery(props) {
                         name={art.name}
                         url={art.url}
                         onDeleteOneArt={deleteOneArtHandler}
+                        onModalClick={modalHandler}
                     />)
                 )}
             </ul>

@@ -4,6 +4,7 @@ import Header from './components/Top-nav/Header';
 import NavBar from './components/Top-nav/NavBar';
 import Gallery from './components/Gallery/Gallery';
 import GalleryForm from './components/GalleryForm/GalleryForm';
+import ArtModal from './components/Gallery/ArtModal';
 
 const initDataStr = '{"data": [{"name": "Yuchen Liu", "url": "./images/IMG_1241.JPG"}, ' +
     '{"name": "Chole Zhang", "url": "./images/IMG_0606.JPG"}, ' +
@@ -17,6 +18,8 @@ const initDataStr = '{"data": [{"name": "Yuchen Liu", "url": "./images/IMG_1241.
 function App() {
   const initDataObj = JSON.parse(initDataStr);
   const [arts, setArts] = useState(initDataObj.data);
+  const [modalShown, setModalShown] = useState(false);
+  const [modalUrl, setModalUrl] = useState("");
 
   const addArtHandler = (artItem) => {
     setArts((prevArts) => {
@@ -34,12 +37,23 @@ function App() {
     });
   };
 
+  const showModalHandler = (selectedUrl) => {
+    setModalUrl(selectedUrl);
+    setModalShown(true);
+  }
+
+  const closeModalHandler = () => {
+    setModalUrl("");
+    setModalShown(false);
+  };
+
   return (
     <div>
       <Header />
       <NavBar />
-      <Gallery items={arts} onDeleteOneArt={deleteOneArtHandler}/>
+      <Gallery items={arts} onDeleteOneArt={deleteOneArtHandler} onModalClick={showModalHandler}/>
       <GalleryForm onAddArt={addArtHandler} onDeleteAllArts={deleteAllArtsHandler}/>
+      <ArtModal url={modalUrl} shown={modalShown} onClose={closeModalHandler}/>
     </div>
   );
 }
