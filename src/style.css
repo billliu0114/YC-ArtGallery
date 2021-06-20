@@ -331,6 +331,14 @@ div.card:hover input {
   word-wrap:break-word;
 }
 
+.modal-edit-input {
+  display: block;
+  width: 95%;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding: 0.5rem;
+}
+
 .about-me-title {
   text-align: center;
   padding-top: 2%;

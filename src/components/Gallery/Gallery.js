@@ -1,12 +1,12 @@
 import ArtItem from './ArtItem';
 
 function Gallery(props) {
-    const deleteOneArtHandler = (selectedUrl) => {
-        props.onDeleteOneArt(selectedUrl);
+    const deleteOneArtHandler = (selectedId) => {
+        props.onDeleteOneArt(selectedId);
     };
 
-    const modalHandler = (selectedUrl) => {
-        props.onModalClick(selectedUrl);
+    const modalHandler = (selectedId) => {
+        props.onModalClick(selectedId);
     }
 
     if( props.items.length===0) {
@@ -21,9 +21,11 @@ function Gallery(props) {
             <ul id="card-flex-container">
                 {props.items.map((art) => (
                     <ArtItem
-                        key={art.url}
+                        key={art.id}
+                        id={art.id}
                         name={art.name}
                         url={art.url}
+                        detail={art.detail}
                         onDeleteOneArt={deleteOneArtHandler}
                         onModalClick={modalHandler}
                     />)

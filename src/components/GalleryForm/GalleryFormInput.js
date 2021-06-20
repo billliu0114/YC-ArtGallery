@@ -4,6 +4,7 @@ function GalleryFormInput(props) {
 
     const [artistName, setArtistName] = useState("");
     const [imageURL, setImageURL] = useState("");
+    const [detail, setDetail] = useState("");
 
     const ArtistChangeHandler = (event) => {
         setArtistName(event.target.value);
@@ -13,11 +14,16 @@ function GalleryFormInput(props) {
         setImageURL(event.target.value);
     };
 
+    const detailChangeHandler = (event) => {
+        setDetail(event.target.value);
+    };
+
     const submitFormHandler = (event) => {
         event.preventDefault();
         const artItem = {
             name: artistName,
-            url: imageURL
+            url: imageURL,
+            detail: detail
         };
         props.onAddArt(artItem);
         clearFormHandler();
@@ -26,6 +32,7 @@ function GalleryFormInput(props) {
     const clearFormHandler = () => {
         setArtistName("");
         setImageURL("");
+        setDetail("");
     };
 
     const deleteAllArtsHandler = () => {
@@ -60,6 +67,20 @@ function GalleryFormInput(props) {
                             placeholder="Enter image URL"
                             value={imageURL}
                             onChange={imageURLChangeHandler}
+                        />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-left">
+                        <label htmlFor="detail">Detail:</label>
+                    </div>
+                    <div className="col-right">
+                        <input
+                            type="text"
+                            id="detail"
+                            placeholder="Enter details"
+                            value={detail}
+                            onChange={detailChangeHandler}
                         />
                     </div>
                 </div>

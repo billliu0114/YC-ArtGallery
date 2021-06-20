@@ -1,11 +1,11 @@
 function ArtItem(props) {
     const deleteHandler = (event) => {
         event.stopPropagation();
-        props.onDeleteOneArt(props.url);
+        props.onDeleteOneArt(props.id);
     };
 
     const modalHandler = () => {
-        props.onModalClick(props.url);
+        props.onModalClick(props.id);
     }
 
     return (
