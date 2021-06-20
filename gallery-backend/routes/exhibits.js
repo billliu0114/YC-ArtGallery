@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const uuid = require('uuid'); //For generating ID's
 
-let initDataObj = {
+const initDataObj = {
   data: [
     {
       id: uuid.v4(),
@@ -55,12 +55,13 @@ let initDataObj = {
   ]
 };
 
+let databaseJSON = JSON.stringify(initDataObj);
+
 // http://localhost:8080/exhibits/
 // GET exhibits listing.
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  let dataJSON = JSON.stringify(initDataObj);
-  res.send(dataJSON);
+  res.send(databaseJSON);
 });
 
 // http://localhost:8080/exhibits/:id
@@ -69,7 +70,8 @@ router.get('/:id', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   const { id } = req.params;
 
-  const foundExhibit = initDataObj.data.find(element => element.id === id);
+  const dataObj = JSON.parse(databaseJSON);
+  const foundExhibit = dataObj.data.find(element => element.id === id);
 
   if(!foundExhibit) {
     return res.status(404).send({
@@ -77,8 +79,7 @@ router.get('/:id', function(req, res, next) {
     });
   }
 
-  let dataJSON = JSON.stringify(foundExhibit);
-  res.send(dataJSON);
+  res.send(JSON.stringify(foundExhibit));
 });
 
 // http://localhost:8080/exhibits/
@@ -102,7 +103,9 @@ router.post('/', (req, res) => {
     detail: newDetail
   };
 
-  initDataObj.data.push(newExhibit);
+  const dataObj = JSON.parse(databaseJSON);
+  dataObj.data.push(newExhibit);
+  databaseJSON = JSON.stringify(dataObj);
 
   res.send(JSON.stringify(newExhibit));
 })
@@ -114,7 +117,9 @@ router.patch('/:id', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const { id } = req.params;
 
-  const foundExhibit = initDataObj.data.find(element => element.id === id);
+  const dataObj = JSON.parse(databaseJSON);
+
+  const foundExhibit = dataObj.data.find(element => element.id === id);
   if(!foundExhibit) {
     return res.status(404).send({
       message: "Exhibit not found with id " + id
@@ -129,6 +134,7 @@ router.patch('/:id', (req, res) => {
   }
 
   foundExhibit.detail = newExhibitDetail;
+  databaseJSON = JSON.stringify(dataObj);
 
   res.send(JSON.stringify(foundExhibit));
 })
@@ -138,14 +144,18 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
-  const foundExhibit = initDataObj.data.find(element => element.id === id);
+  const dataObj = JSON.parse(databaseJSON);
+
+  const foundExhibit = dataObj.data.find(element => element.id === id);
   if(!foundExhibit) {
     return res.status(404).send({
       message: "Exhibit not found with id " + id
     });
   }
 
-  initDataObj.data = initDataObj.data.filter(element => element.id !== id);
+  dataObj.data = dataObj.data.filter(element => element.id !== id);
+
+  databaseJSON = JSON.stringify(dataObj);
 
   res.status(204).send();
 })
