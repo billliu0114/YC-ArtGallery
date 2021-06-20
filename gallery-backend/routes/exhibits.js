@@ -139,6 +139,18 @@ router.patch('/:id', (req, res) => {
   res.send(JSON.stringify(foundExhibit));
 })
 
+// http://localhost:8080/exhibits/all
+// Delete all exhibits.
+router.delete('/all', (req, res) => {
+  const emptyDataObj = {
+    data:[]
+  };
+
+  databaseJSON = JSON.stringify(emptyDataObj);
+
+  res.status(204).send();
+})
+
 // http://localhost:8080/exhibits/:id
 // Delete one single exhibit.
 router.delete('/:id', (req, res) => {
@@ -159,6 +171,5 @@ router.delete('/:id', (req, res) => {
 
   res.status(204).send();
 })
-
 
 module.exports = router;

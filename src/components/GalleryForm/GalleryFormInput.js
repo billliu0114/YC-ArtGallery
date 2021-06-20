@@ -5,6 +5,7 @@ function GalleryFormInput(props) {
     const [artistName, setArtistName] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [detail, setDetail] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const ArtistChangeHandler = (event) => {
         setArtistName(event.target.value);
@@ -18,14 +19,16 @@ function GalleryFormInput(props) {
         setDetail(event.target.value);
     };
 
-    const submitFormHandler = (event) => {
+    const submitFormHandler = async (event) => {
         event.preventDefault();
         const artItem = {
             name: artistName,
             url: imageURL,
             detail: detail
         };
-        props.onAddArt(artItem);
+        setIsLoading(true);
+        await props.onAddArt(artItem);
+        setIsLoading(false);
         clearFormHandler();
     };
 
@@ -35,8 +38,8 @@ function GalleryFormInput(props) {
         setDetail("");
     };
 
-    const deleteAllArtsHandler = () => {
-        props.onDeleteAllArts();
+    const deleteAllArtsHandler = async () => {
+        await props.onDeleteAllArts();
     };
 
     return (
@@ -85,8 +88,8 @@ function GalleryFormInput(props) {
                     </div>
                 </div>
                 <div className="row-button">
-                    <button type="submit">Add Image</button>
-                    <button type="button" onClick={clearFormHandler}>Clear Input</button>
+                    <button type="submit" disabled={isLoading}>Add Image</button>
+                    <button type="button" onClick={clearFormHandler} disabled={isLoading}>Clear Input</button>
                 </div>
                 <div className="row-button">
                     <button id="form-deleteAllButton" type="button" onClick={deleteAllArtsHandler}>Delete All Arts</button>

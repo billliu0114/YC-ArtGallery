@@ -1,44 +1,67 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Top-nav/Header';
 import NavBar from './components/Top-nav/NavBar';
 import Gallery from './components/Gallery/Gallery';
 import GalleryForm from './components/GalleryForm/GalleryForm';
 import ArtModal from './components/Gallery/ArtModal';
-
-const initDataStr = '{"data":[{"id":"92a95f97-6951-48ad-8bbe-d45d08442492","name":"Yuchen Liu","url":"./images/IMG_1241.JPG","detail":"Painting by myself."},{"id":"eb650209-98a6-4fe3-82a0-f4672b88d5ec","name":"Chole Zhang","url":"./images/IMG_0606.JPG","detail":"Picture took in Banff National Park."},{"id":"3fc1735f-dbbb-4f01-bde2-0cdd8937209f","name":"sorincolac / iStock / Getty Images Plus","url":"https://d3vjn2zm46gms2.cloudfront.net/blogs/2012/12/27011605/gtc_2008-05-26spri0002.jpg","detail":"Nice picture of Getty museum."},{"id":"a8eb9bca-c864-469a-962b-1d78fb9546b4","name":"JAMES CUNO","url":"https://cdn.travelpulse.com/images/04aaedf4-a957-df11-b491-006073e71405/d7dd8d85-eed6-4740-8962-1583ff8dc93f/630x355.jpg","detail":"Nice place in Mexico."},{"id":"232d81bf-0b07-4fdf-9070-feeb2a0152c3","name":"Van Gogh","url":"https://www.vangoghgallery.com/img/starry_night_full.jpg","detail":"One of my favourite artist."},{"id":"988f55fa-d179-406e-8ef8-be7f086cfd84","name":"Claude Monet","url":"https://www.claude-monet.com/images/paintings/san-giorgio-maggiore-at-dusk.jpg","detail":"Another one of my favourite artist."},{"id":"056c7037-d583-4c59-8701-895ceeae84df","name":"Johannes Vermeer","url":"https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/01/girlwithapearlearring.jpg","detail":"Famous portrait."},{"id":"cf2c4673-a28b-4b63-b01f-6b9afe907dcc","name":"star","url":"https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg","detail":"hhh"}]}';
+import * as appAPI from './appAPI.js';
 
 function App() {
-  const initDataObj = JSON.parse(initDataStr);
-  const [arts, setArts] = useState(initDataObj.data);
+  const [arts, setArts] = useState([]);
   const [modalShown, setModalShown] = useState(false);
-  const [modalDetail, setModalDetail] = useState("");
+  const [modalItem, setModalItem] = useState({id:'', url:'', name:'', detail:''});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const addArtHandler = (artItem) => {
-    setArts((prevArts) => {
-      return [...prevArts, artItem];
-    });
+  const fetchArtItemsHandler = async (config) => {
+    config.showLoading && setIsLoading(true);
+    const resData = await appAPI.getExhibits();
+    config.showLoading && setIsLoading(false);
+    setArts(resData.data);
   };
 
-  const deleteAllArtsHandler = () => {
-    setArts([]);
+  useEffect(()=>{
+    fetchArtItemsHandler({showLoading: true});
+  },[]);
+
+  useEffect(()=>{
+    setModalItem((prevItem)=>{
+      if (prevItem.id!=='') {
+        return arts.find(element => element.id === prevItem.id); 
+      } else {
+        return prevItem;
+      }
+    });
+  },[arts]);
+
+  const editModalHandler = async (id, content) => {
+    await appAPI.patchExhibits(id, content);
+    await fetchArtItemsHandler({showLoading: false});
   };
 
-  const deleteOneArtHandler = (selectedId) => {
-    setArts((prevArts) => {
-      return prevArts.filter((artItem) => artItem.id !== selectedId);
-    });
+  const addArtHandler = async (artItem) => {
+    await appAPI.postExhibits(artItem);
+    await fetchArtItemsHandler({showLoading: false});
+  };
+
+  const deleteAllArtsHandler = async () => {
+    await appAPI.deleteAllExhibits();
+    await fetchArtItemsHandler({showLoading: false});
+  };
+
+  const deleteOneArtHandler = async (selectedId) => {
+    await appAPI.deleteOneExhibits(selectedId);
+    await fetchArtItemsHandler({showLoading: false});
   };
 
   const showModalHandler = (selectedId) => {
     const foundArt = arts.find(element => element.id === selectedId);
-
-    setModalDetail(foundArt.detail);
+    setModalItem(foundArt);
     setModalShown(true);
   }
 
   const closeModalHandler = () => {
-    setModalDetail("");
+    setModalItem({id:'', url:'', name:'', detail:''});
     setModalShown(false);
   };
 
@@ -46,9 +69,9 @@ function App() {
     <div>
       <Header />
       <NavBar />
-      <Gallery items={arts} onDeleteOneArt={deleteOneArtHandler} onModalClick={showModalHandler} />
+      <Gallery items={arts} isLoading = {isLoading} onDeleteOneArt={deleteOneArtHandler} onModalClick={showModalHandler} />
       <GalleryForm onAddArt={addArtHandler} onDeleteAllArts={deleteAllArtsHandler} />
-      <ArtModal detail={modalDetail} shown={modalShown} onClose={closeModalHandler} />
+      <ArtModal item={modalItem} shown={modalShown} onClose={closeModalHandler} onEdit={editModalHandler}/>
     </div>
   );
 }

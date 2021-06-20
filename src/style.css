@@ -329,6 +329,11 @@ div.card:hover input {
 .modal-body {
   padding: 1% 2%;
   word-wrap:break-word;
+  font-size: 1.3rem;
+}
+
+.modal-body p{
+  padding-left: 0.5rem;
 }
 
 .modal-edit-input {
@@ -337,6 +342,7 @@ div.card:hover input {
   margin-block-start: 1em;
   margin-block-end: 1em;
   padding: 0.5rem;
+  font-size: 1.3rem;;
 }
 
 .about-me-title {

@@ -1,12 +1,12 @@
 import GalleryFormInput from './GalleryFormInput';
 
 function GalleryForm(props) {
-    const addArtHandler = (artItem) => {
-        props.onAddArt(artItem);
+    const addArtHandler = async (artItem) => {
+        await props.onAddArt(artItem);
     };
 
-    const deleteAllArtsHandler = () => {
-        props.onDeleteAllArts();
+    const deleteAllArtsHandler = async () => {
+        await props.onDeleteAllArts();
     };
     
     return (

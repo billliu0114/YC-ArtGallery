@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 // Adapted from https://www.w3schools.com/howto/howto_css_modals.asp
 function ArtModal(props) {
     const [inEditMode, setInEditMode] = useState(false);
-    const [localDetail, setLocalDetail] = useState(props.detail);
-    useEffect(()=>setLocalDetail(props.detail),[props.detail]);
+    const [localDetail, setLocalDetail] = useState(props.item.detail);
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(()=>setLocalDetail(props.item.detail),[props.item.detail]);
 
     const closeModalHandler = () => {
+        setInEditMode(false);
         props.onClose();
     };
 
@@ -14,13 +16,13 @@ function ArtModal(props) {
         setLocalDetail(event.target.value);
     }
 
-    const editHandler = () => {
+    const editHandler = async () => {
         if (inEditMode){
             // to save
-
-        } else {
-            // to edit
-            
+            // Call PATCH API with updated localDetail
+            setIsLoading(true);
+            await props.onEdit(props.item.id, localDetail);
+            setIsLoading(false);
         }
         setInEditMode((prevState)=>!prevState);
     };
@@ -35,7 +37,7 @@ function ArtModal(props) {
                             <h2>Detail</h2>
                         </div>
                         <div className="modal-body">
-                            {!inEditMode && <p>{props.detail}</p>}
+                            {!inEditMode && <p>{props.item.detail}</p>}
                             {inEditMode && 
                                 <input
                                 className="modal-edit-input"
@@ -46,7 +48,7 @@ function ArtModal(props) {
                                 onChange={detailChangeHandler}
                                 />
                             }
-                            <button onClick={editHandler}> {!inEditMode && 'Edit'} {inEditMode && 'Save'} </button>
+                            <button onClick={editHandler} disabled={isLoading}> {!inEditMode && 'Edit'} {inEditMode && 'Save'} </button>
                         </div>
                     </div>
                 </div>

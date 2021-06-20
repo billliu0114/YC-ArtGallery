@@ -1,7 +1,7 @@
 function ArtItem(props) {
-    const deleteHandler = (event) => {
+    const deleteHandler = async (event) => {
         event.stopPropagation();
-        props.onDeleteOneArt(props.id);
+        await props.onDeleteOneArt(props.id);
     };
 
     const modalHandler = () => {
