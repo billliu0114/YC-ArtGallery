@@ -26,7 +26,7 @@ const createArtItem = async (req, res) => {
         );
     }
 
-    res.status(200).json(newExhibit);
+    res.status(200).json(newExhibit.toObject({getters:true}));
 };
 
 const getAllArtItems = async (req, res) => {
@@ -39,7 +39,7 @@ const getAllArtItems = async (req, res) => {
             { message: "Internal server error. Cannot find arts." }
         );
     }
-    res.status(200).json({data: artItems.map(art => art)});
+    res.status(200).json({data: artItems.map(art => art.toObject({getters:true}))});
 };
 
 const getArtItemById = async (req, res) => {
@@ -60,7 +60,7 @@ const getArtItemById = async (req, res) => {
         });
     }
 
-    res.status(200).json(foundExhibit);
+    res.status(200).json(foundExhibit.toObject({getters:true}));
 };
 
 const updateArtItem = async (req, res) => {
@@ -94,7 +94,7 @@ const updateArtItem = async (req, res) => {
             { message: "Internal server error. Cannot update the detail of art." }
         );
     }
-    res.status(200).json(foundExhibit);
+    res.status(200).json(foundExhibit.toObject({getters:true}));
 };
 
 const deleteArtItemById = async (req, res) => {
