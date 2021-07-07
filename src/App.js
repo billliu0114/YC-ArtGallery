@@ -17,7 +17,11 @@ function App() {
     config.showLoading && setIsLoading(true);
     const resData = await appAPI.getExhibits();
     config.showLoading && setIsLoading(false);
-    setArts(resData.data);
+    if (!resData) {
+      setArts([]);
+    } else {
+      setArts(resData.data);
+    }
   };
 
   useEffect(()=>{
