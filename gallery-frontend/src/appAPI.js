@@ -10,7 +10,6 @@ const axiosInstance = axios.create({
 export async function getExhibits() {
     try {
       const response = await axiosInstance.get('/exhibits/');
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -25,7 +24,6 @@ export async function postExhibits(item) {
             "url": item.url,
             "detail": item.detail
         });
-        console.log(response);
     } catch (error) {
         console.log(error);
     }
@@ -37,7 +35,6 @@ export async function patchExhibits(id, content) {
         {
             "detail": content
         });
-        console.log(response);
     } catch (error) {
         console.log(error);
     }
@@ -46,7 +43,6 @@ export async function patchExhibits(id, content) {
 export async function deleteOneExhibits(id) {
     try {
         const response = await axiosInstance.delete(`/exhibits/${id}`);
-        console.log(response);
     } catch (error) {
         console.log(error);
     }
@@ -55,7 +51,6 @@ export async function deleteOneExhibits(id) {
 export async function deleteAllExhibits() {
     try {
         const response = await axiosInstance.delete('/exhibits/all');
-        console.log(response);
     } catch (error) {
         console.log(error);
     }
