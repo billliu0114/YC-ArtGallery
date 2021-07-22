@@ -1,0 +1,299 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0%;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.nav {
+  background-color: #0bd2cd;
+  margin: 0%;
+}
+
+.nav h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 3rem;
+  margin: 0%;
+  color: white;
+  padding-left: 1.5rem;
+  padding-top: 0.3rem;
+}
+
+#nav-bar-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  list-style: none;
+  margin: 0%;
+}
+
+.nav-bar {
+  z-index: 1;
+  position: sticky; top: 0;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  display: block;
+  padding: 1rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.nav-bar a:hover {
+  background: #0abab5;
+}
+
+#card-flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.card-flex-item {
+  padding: 1rem;
+  width: 18rem;
+  height: 18rem;
+  margin: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card {
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0,0,0,0.19);
+  border-radius: 0.5rem;
+}
+
+img {
+  width:  18rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+div.card:hover {
+  opacity: 50%;
+}
+
+.ref h4 {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.form-container {
+  margin-top: 10%;
+  background-color: #0bd2cd;
+}
+.form-container h2 {
+  text-align: center;
+  margin: 0;
+  padding-top: 3%;
+  color: white;
+}
+
+.form-input {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 1rem;
+  margin-top: 0;
+  margin-inline: 30%;
+}
+
+.form-input form {
+  width: 100%;
+}
+
+.form-input input[type=text] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.form-input label {
+  padding: 0.8rem 0.8rem 0.8rem 0;
+  font-weight: bolder;
+  display: inline-block;
+  color: white;
+}
+
+.form-input .col-left {
+  float: left;
+  width: 25%;
+  margin-top: 0.5rem;
+}
+
+.form-input .col-right {
+  float: left;
+  width: 75%;
+  margin-top: 0.5rem;
+}
+
+
+.form-button {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-inline: 30%;
+  margin-bottom: 2%;
+}
+
+button {
+  margin: 0.5rem;
+  background-color: #0abab5; /* Green */
+  border: none;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+button:hover {
+  background-color: #09a29d;
+}
+
+button:active {
+  background-color: #078a86;
+}
+
+.delete-one-art {
+  display: none;
+  position:absolute;
+  top:0.5rem;
+  right:0.5rem;
+  border-radius: 0.5rem;
+  border: 0;
+  opacity: 70%;
+}
+
+div.card:hover input {
+  display: block;
+}
+
+.delete-one-art:hover {
+  opacity: 85%;
+}
+
+.delete-one-art:active {
+  opacity: 100%;
+}
+
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.delete-all {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-inline: 30%;
+}
+
+#form-deleteAllButton {
+  background-color: #cf6f37;
+  margin-bottom: 5%;
+}
+
+
+
+
+@media all and (max-width: 600px) {
+  .nav h1 {
+      font-size: 2rem;
+      padding: 0.5rem;
+      text-align:center;
+      white-space: nowrap;
+      border-bottom: none;
+  }
+  #nav-bar-list {
+    flex-flow: column wrap;
+    padding: 0;
+  }
+  .nav-bar a { 
+    text-align: center; 
+    padding: 1rem;
+  }
+  .nav-bar li:last-of-type a {
+    border-bottom: none;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .form-input {
+      margin-inline: 25%;
+  }
+}
+
+@media all and (max-width: 950px) {
+  .form-input .col-left, .form-input .col-right {
+      width: 100%;
+      margin-top: 0;
+  }
+}
+
+.about-me-title {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.linkedin a{
+  text-decoration: none;
+}
+
+article {
+  line-height: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+article h1 {
+  padding-top: 3%;
+}
+
+article li div:nth-child(1) {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+article li div:nth-child(3) {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+#linkedin-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
