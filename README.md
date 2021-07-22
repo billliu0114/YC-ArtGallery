@@ -74,3 +74,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Github Actions Reference
 
 [Github actions](https://github.com/marketplace/actions/deploy-to-heroku)
+[Gallery Icon](https://www.pngfind.com/mpng/ihobbbb_icon-maker-pro-4-gallery-icon-png-transparent/)
+[Udemy](https://www.udemy.com/)
