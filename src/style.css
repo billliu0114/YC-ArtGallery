@@ -86,7 +86,7 @@ img {
 }
 
 div.card:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .ref h4 {
@@ -183,7 +183,7 @@ button:active {
   height: 1.5rem;
   border-radius: 50%;
   border: 0;
-  opacity: 70%;
+  opacity: 0.7;
 }
 
 /* smartphones, touchscreens */
@@ -200,11 +200,11 @@ div.card:hover input {
 }
 
 .delete-one-art:hover {
-  opacity: 85%;
+  opacity: 0.85;
 }
 
 .delete-one-art:active {
-  opacity: 100%;
+  opacity: 1;
 }
 
 
